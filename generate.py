@@ -6,8 +6,11 @@
 ###############################################################################
 
 import argparse
+import time
+import math
 
 import torch
+import torch.nn as nn
 from torch.autograd import Variable
 
 import data
@@ -54,6 +57,7 @@ else:
 
 corpus = data.Corpus(args.data)
 ntokens = len(corpus.dictionary)
+print 'vocab size: ', ntokens
 hidden = model.init_hidden(1)
 input = Variable(torch.rand(1, 1).mul(ntokens).long(), volatile=True)
 if args.cuda:
