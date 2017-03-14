@@ -11,14 +11,13 @@ By default, the training script uses the PTB dataset, provided.
 The trained model can then be used by the generate script to generate new text.
 
 ```bash
-python main.py --cuda --epochs 6        # Train a LSTM on PTB with CUDA, reaching perplexity of 117.61
-python main.py --cuda --epochs 6 --tied # Train a tied LSTM on PTB with CUDA, reaching perplexity of 110.44
-python main.py --cuda --tied            # Train a tied LSTM on PTB with CUDA for 40 epochs, reaching perplexity of 87.17
+python main.py --epochs 6        # Train a LSTM on PTB, reaching perplexity of 117.61
+python main.py --epochs 6 --tied # Train a tied LSTM on PTB, reaching perplexity of 110.44
+python main.py --tied            # Train a tied LSTM on PTB for 40 epochs, reaching perplexity of 87.17
 python generate.py                      # Generate samples from the trained LSTM model.
 ```
 
 The model uses the `nn.RNN` module (and its sister modules `nn.GRU` and `nn.LSTM`)
-which will automatically use the cuDNN backend if run on CUDA with cuDNN installed.
 
 During training, if a keyboard interrupt (Ctrl-C) is received,
 training is stopped and the current model is evaluted against the test dataset.
@@ -42,7 +41,6 @@ optional arguments:
   --decay DECAY      learning rate decay per epoch
   --tied             tie the word embedding and softmax weights
   --seed SEED        random seed
-  --cuda             use CUDA
   --log-interval N   report interval
   --save SAVE        path to save the final model
 ```
@@ -51,10 +49,10 @@ With these arguments, a variety of models can be tested.
 As an example, the following arguments produce slower but better models:
 
 ```bash
-python main.py --cuda --emsize 650 --nhid 650 --dropout 0.5 --epochs 40           # Test perplexity of 80.97
-python main.py --cuda --emsize 650 --nhid 650 --dropout 0.5 --epochs 40 --tied    # Test perplexity of 75.96
-python main.py --cuda --emsize 1500 --nhid 1500 --dropout 0.65 --epochs 40        # Test perplexity of 77.42
-python main.py --cuda --emsize 1500 --nhid 1500 --dropout 0.65 --epochs 40 --tied # Test perplexity of 72.30
+python main.py --emsize 650 --nhid 650 --dropout 0.5 --epochs 40           # Test perplexity of 80.97
+python main.py --emsize 650 --nhid 650 --dropout 0.5 --epochs 40 --tied    # Test perplexity of 75.96
+python main.py --emsize 1500 --nhid 1500 --dropout 0.65 --epochs 40        # Test perplexity of 77.42
+python main.py --emsize 1500 --nhid 1500 --dropout 0.65 --epochs 40 --tied # Test perplexity of 72.30
 ```
 
 These perplexities are equal or better than
