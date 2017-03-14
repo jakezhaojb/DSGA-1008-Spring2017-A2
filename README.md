@@ -1,6 +1,6 @@
-# ds-ga-1008-a1
+# ds-ga-1008-a2
 
-NYU course Spring 2017 Assignment 1
+NYU course Spring 2017 Assignment 2
 
 This sample code is from https://github.com/pytorch/examples/tree/master/word_language_model.
 
