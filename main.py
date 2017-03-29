@@ -158,7 +158,7 @@ for epoch in range(1, args.epochs+1):
     print('-' * 89)
     # Anneal the learning rate.
     if prev_val_loss and val_loss > prev_val_loss:
-        lr /= 4
+        lr /= 4.0
     prev_val_loss = val_loss
 
 
